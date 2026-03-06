@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    int numRegistros = (int)ViewData["NUMREGISTROS"];
+    int numPagina = (int)ViewData["NUMPAGINA"];
+}
+@model List<VistaDepartamento>
+<hr/>
+@Html.Raw(@ViewData["LINKS"])
+<hr />
+<div>
+    @for( int i=0; i<= numRegistros; i += 2)
+    {
+        <a asp-controller="Paginacion" asp-action="GrupoVistaDepartamentos"> Pagina @numPagina </a>
+    }
+
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Posicion</th>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Localidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(VistaDepartamento departamento in Model)
+        {
+            <tr>
+                <td>@departamento.Posicion</td>
+                <td>@departamento.IdDepartamento</td>
+                <td>@departamento.Nombre</td>
+                <td>@departamento.Localidad</td>
+            </tr>
+        }
+    </tbody>
+</table>
