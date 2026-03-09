@@ -5,16 +5,16 @@
     int numRegistros = (int)ViewData["NUMREGISTROS"];
     int numPagina = (int)ViewData["NUMPAGINA"];
 }
-@model List<VistaDepartamento>
-<hr/>
-@Html.Raw(@ViewData["LINKS"])
-<hr />
+@model List<Departamento>
+
+<h1 style="color:blue"> Paginar Grupo Departamentos</h1>
+
 <div>
-    @for( int i=0; i<= numRegistros; i += 2)
+    @for (int i = 0; i <= numRegistros; i += 2)
     {
-        <a asp-controller="Paginacion" asp-action="GrupoVistaDepartamentos" 
-        asp-route-posicion="@i" class="btn btn-success"> 
-            Pagina @numPagina 
+        <a asp-controller="Paginacion" asp-action="GrupoDepartamentos"
+           asp-route-posicion="@i" class="btn btn-success">
+            Pagina @numPagina
         </a>
         numPagina += 1;
     }
@@ -23,17 +23,15 @@
 <table>
     <thead>
         <tr>
-            <th>Posicion</th>
             <th>Id</th>
             <th>Nombre</th>
             <th>Localidad</th>
         </tr>
     </thead>
     <tbody>
-        @foreach(VistaDepartamento departamento in Model)
+        @foreach (Departamento departamento in Model)
         {
             <tr>
-                <td>@departamento.Posicion</td>
                 <td>@departamento.IdDepartamento</td>
                 <td>@departamento.Nombre</td>
                 <td>@departamento.Localidad</td>

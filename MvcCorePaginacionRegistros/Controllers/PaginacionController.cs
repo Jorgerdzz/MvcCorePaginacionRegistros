@@ -46,15 +46,6 @@ namespace MvcCorePaginacionRegistros.Controllers
             }
             ViewData["NUMPAGINA"] = 1;
             ViewData["NUMREGISTROS"] = await this.repo.GetNumeroRegistrosVistaDepartamentosAsync();
-            string html = "<div>";
-            for(int i=0; i <= numeroRegistros; i+=2)
-            {
-                html += "<a href='GrupoVistaDepartamentos?posicion="
-                    + i + "'>Página " + numPagina + "</a>";
-                numPagina += 1;
-            }
-            html += "</div>";
-            ViewData["LINKS"] = html;
             List<VistaDepartamento> departamentos = await this.repo.GetGrupoVistaDepartamentoAsync(posicion.Value);
             return View(departamentos);
         }
@@ -62,6 +53,18 @@ namespace MvcCorePaginacionRegistros.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public async Task<IActionResult> GrupoDepartamentos(int? posicion)
+        {
+            if (posicion == null)
+            {
+                posicion = 1;
+            }
+            ViewData["NUMPAGINA"] = 1;
+            ViewData["NUMREGISTROS"] = await this.repo.GetNumeroRegistrosVistaDepartamentosAsync();
+            List<Departamento> departamentos = await this.repo.GetGrupoDepartamentosAsync(posicion.Value);
+            return View(departamentos);
         }
     }
 }
