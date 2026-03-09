@@ -35,6 +35,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Paginacion" asp-action="GrupoDepartamentos">Paginacion grupo departamentos</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Paginacion" asp-action="GrupoEmpleados">Paginacion grupo empleados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Paginacion" asp-action="GrupoEmpleadosOficioOut">Paginacion grupo empleados oficio Out</a>
+                        </li>
+                        @await Component.InvokeAsync("MenuDepartamento")
                     </ul>
                 </div>
             </div>

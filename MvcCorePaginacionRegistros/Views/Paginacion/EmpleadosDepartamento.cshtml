@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ModelEmpleadosDepartamento
+
+<ul class="list-group">
+    <li class="list-group.item">
+        Id departamento: @Model.IdDepartamento
+    </li>
+    <li class="list-group.item">
+        Nombre: @Model.Nombre
+    </li>
+    <li class="list-group.item">
+        Localidad: @Model.Localidad
+    </li>
+</ul>
+
+@if(Model.Empleados != null)
+{
+    <table class="table table-info table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>APELLIDO</th>
+                <th>OFICIO</th>
+                <th>SALARIO</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Empleado empleado in Model.Empleados)
+            {
+                <tr>
+                    <td>@empleado.IdEmpleado</td>
+                    <td>@empleado.Apellido</td>
+                    <td>@empleado.Oficio</td>
+                    <td>@empleado.Salario</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

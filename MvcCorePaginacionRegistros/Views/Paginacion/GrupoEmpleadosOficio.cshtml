@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Empleado>
+
+<h1 style="color:forestgreen"> Paginar Grupo Empleados Oficio</h1>
+
+<form method="post">
+    <label>Introduzca oficio:</label>
+    <input type="text" name="oficio" class="form-control"/>
+    <button class="btn btn-warning">Filtrar</button>
+</form>
+
+@{
+    int numRegistros = 0;
+    int numPagina = 1;
+    string oficio = "";
+    if(ViewData["REGISTROS"] != null)
+    {
+        numRegistros = (int)ViewData["REGISTROS"];
+        oficio = ViewData["OFICIO"].ToString();
+    }
+}
+
+@if(Model != null)
+{
+    <div>
+        @for (int i = 0; i <= numRegistros; i += 3)
+        {
+            <a asp-controller="Paginacion" asp-action="GrupoEmpleadosOficio"
+               asp-route-posicion="@i" class="btn btn-danger" asp-route-oficio="@oficio">
+                Pagina @numPagina
+            </a>
+            numPagina += 1;
+        }
+
+    </div>
+    <table class="table table-info table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Apellidos</th>
+                <th>Oficio</th>
+                <th>Salario</th>
+                <th>Departamento</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Empleado emp in Model)
+            {
+                <tr>
+                    <td>@emp.IdEmpleado</td>
+                    <td>@emp.Apellido</td>
+                    <td>@emp.Oficio</td>
+                    <td>@emp.Salario</td>
+                    <td>@emp.IdDepartamento</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
